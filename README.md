@@ -1,2 +1,2 @@
-# Incendio_forestalL
+# Incendio_forestal
 Exactas programa, ejercicio 03
