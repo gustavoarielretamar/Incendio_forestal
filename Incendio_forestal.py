@@ -1,5 +1,6 @@
 #%% LIBRERIAS
 import random
+import matplotlib.pyplot as plt
 
 #%% 01 GENERAR BOSQUE
 def generar_bosque (n, debug = False):
@@ -93,4 +94,24 @@ def dinamica (n, a, p, f, debug = False):
         print (promedio)
     return promedio
 
-dinamica (10, 2, 80, 30, True)
+def promedios (n, a, p, f):
+    promedios = []* a
+    contador = 0
+    while contador <= 10:
+        promedios.append(dinamica (n, a, p, f))
+        contador = contador + 1
+        p = p + 10
+    print(promedios)
+    return promedios
+lista_promedios = promedios(100, 1000, 0, 2)
+
+plt.title("titulo del grafico")
+plt.xlabel("valores de x", fontsize = 16)
+plt.ylabel("valores de y", color = "blue")
+plt.plot(lista_promedios, ".")
+plt.show()
+
+
+# ax.lista_promedios
+# plt.savefig('diagrama-dispersion.png')
+# plt.show()
