@@ -75,7 +75,8 @@ def dinamica (n, a, p, f, debug = False):
         bosque = generar_bosque (n)
         bosque_b = brotes(bosque, p)
         bosque_r = rayos (bosque_b, f)
-        bosque_l = limpieza (bosque_r)
+        bosque_p = propagacion(bosque_r)
+        bosque_l = limpieza (bosque_p,)
         vivos = cuantos (bosque_l, 1)
         arboles.append (vivos)
         contador = contador + 1
@@ -83,39 +84,42 @@ def dinamica (n, a, p, f, debug = False):
     if debug:
         print (promedio)
     return promedio
-
-def promedios (n, a, p, f):
+# %% VALOR OPTIMO DE P:
+def valor_optimo_de_p(n, a, p, f, debug = False):
     promedios = []* a
     contador = 0
     while contador <= 100:
         promedios.append(dinamica (n, a, p, f))
         contador = contador + 1
         p = p + 1
-    print(promedios)
+    if debug:
+        print(promedios)
+        
     return promedios
+# %% PARAMETROS:
+n = 100
+p = 0
+f = 2
+a = 500
 # %% LLAMADAS:
-# generar_bosque (10, True)
-# suceso_aleatorio(80, True)
-# brotes(generar_bosque(10, True), 80, True)
-# cuantos(brotes(generar_bosque(10, True), 80, True), 1, True)
-# rayos (brotes(generar_bosque(10), 80, True), 30, True)
+# generar_bosque (n, True)
+# suceso_aleatorio(p, True)
+# brotes(generar_bosque(n, True), p, True)
+# cuantos(brotes(generar_bosque(n, True), p, True), 1, True)
+# rayos (brotes(generar_bosque(n), p, True), f, True)
 # b_1 = [1, 1, 1, -1, 0, 0, 0, -1, 1, 0]
 # b_2 = [-1, 1, 1, -1, 1, 1, 0, 0, -1, 1]
 # propagacion(b_1, True)
-# propagacion(rayos (brotes(generar_bosque(10, True), 80, True), 30, True), True)
-# limpieza (propagacion(rayos (brotes(generar_bosque(10, True), 80, True), 30, True), True), True)
+# propagacion(rayos (brotes(generar_bosque(n, True), p, True), f, True), True)
+# limpieza (propagacion(rayos (brotes(generar_bosque(n, True), p, True), f, True), True), True)
+# dinamica(n, a, p, f, True)
+lista_promedios = valor_optimo_de_p(n, a, p, f, True)
 
-
-
-# lista_promedios = promedios(100, 1000, 0, 2)
-
-# plt.title("titulo del grafico")
-# plt.xlabel("valores de x", fontsize = 16)
-# plt.ylabel("valores de y", color = "blue")
-# plt.plot(lista_promedios, ".")
-# plt.show()
-
-
-# ax.lista_promedios
-# plt.savefig('diagrama-dispersion.png')
-# plt.show()
+plt.title("titulo del grafico")
+plt.xlabel("valores de x", fontsize = 16)
+plt.ylabel("valores de y", color = "blue")
+plt.plot(lista_promedios, ".")
+plt.show()
+ax.lista_promedios
+plt.savefig('diagrama-dispersion.png')
+plt.show()
